@@ -1,0 +1,74 @@
+﻿<Window x:Class="MedicinesSales.LogIn"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:MedicinesSales"
+      xmlns:vm="clr-namespace:MedicinesSales.Data.ViewModel"
+      mc:Ignorable="d" 
+      Height="375" Width="650" MinWidth="650" MinHeight="350"
+      Title="Login">
+
+    <Window.DataContext>
+        <vm:LoginInViewModel/>
+    </Window.DataContext>
+
+
+    <Grid>
+
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="285*"/>
+            <ColumnDefinition Width="232*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Column="0" Margin="0,0,39,0">
+            <Image 
+               Source="pack://application:,,,/Data/Images/Logo 800x800.png"
+               x:Name="Logo"    
+               HorizontalAlignment="Left" 
+               Height="201" 
+               Margin="24,52,0,0"
+               VerticalAlignment="Top" 
+               Width="265"/>
+
+        </Grid>
+
+        <Grid Grid.ColumnSpan="2" Margin="315,0,0,0">
+            <Button Content="Log in" 
+                     HorizontalAlignment="Left" 
+                     Margin="10,204,0,0" 
+                     VerticalAlignment="Top" 
+                     Width="202" 
+                     Height="36" 
+                     Command="{Binding ClickCommand}"/>
+            <TextBox x:Name="LoginField" HorizontalAlignment="Left"
+                     Text="{Binding Path=LoginIn.login, Mode=TwoWay}"
+                     Height="32"
+                     Margin="10,97,0,0" 
+                     TextWrapping="noWrap" 
+                     VerticalAlignment="Top"
+                     Width="202"/>
+
+            <TextBox x:Name="PasswordField" HorizontalAlignment="Left"
+                     Text="{Binding Path=LoginIn.password, Mode=TwoWay}"
+                     Margin="10,155,0,0"
+                     TextWrapping="noWrap"
+                     VerticalAlignment="Top"
+                     Width="202" 
+                     Height="32"/>
+            <Label x:Name="StatusConnect" 
+
+                   HorizontalAlignment="Left" 
+                   Margin="10,0,0,48" 
+                   VerticalAlignment="Bottom" 
+                   Width="247" FontSize="11" Height="23"/>
+            <Label Content="Login" HorizontalAlignment="Left" Margin="10,71,0,0" VerticalAlignment="Top" Width="65"/>
+            <Label Content="Password" HorizontalAlignment="Left" Margin="10,129,0,0" VerticalAlignment="Top" Width="65"/>
+
+        </Grid>
+
+
+
+    </Grid>
+</Window>
