@@ -17,8 +17,7 @@ namespace MedicinesSales.Data.ViewModel
         public LoginInViewModel()
         {
             ClickCommand = new Command(arg => ClickMethod());
-            LoginIn = new LoginInModel();
- 
+            LoginIn = new LoginInModel(); 
         }
         #endregion
 
@@ -33,11 +32,15 @@ namespace MedicinesSales.Data.ViewModel
 
         private void ClickMethod()
         {
-            if (DatabaseModel.CheckMatchAccount(LoginIn.login, LoginIn.password)) {
+            DatabaseModel database = new DatabaseModel();
+            if (database.CheckMatchAccount(LoginIn.login, LoginIn.password))
+            {
 
                 Program window = new Program();
                 window.Show();
-                Application.Current.MainWindow.Close(); }
+                Application.Current.MainWindow.Close();
+            }
+            else MessageBox.Show("Data entered incorrectly!");
         }
     }
 }

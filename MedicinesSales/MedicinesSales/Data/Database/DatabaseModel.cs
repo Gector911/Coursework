@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
 using System.Windows.Controls;
+using MedicinesSales.Data.Model;
+using MedicinesSales.Data.Other;
 
 
 namespace MedicinesSales.Data.Database
@@ -15,8 +17,8 @@ namespace MedicinesSales.Data.Database
     {
        static private string connString = "server=localhost;user=root;database=my_pharmacy;password=kot9820098teeh1234;";
 
-       static public MySqlConnection connection;
-       static private MySqlCommand command;
+       public MySqlConnection connection;
+       private MySqlCommand command;
 
         public DatabaseModel() {
             connection = new MySqlConnection(connString);
@@ -24,7 +26,7 @@ namespace MedicinesSales.Data.Database
         }
 
         #region verification account
-        public static bool CheckLogin(string login)
+        public bool CheckLogin(string login)
         {
             string query = "SELECT COUNT(*) FROM account WHERE login = @login";
             command = new MySqlCommand(query,connection);
@@ -39,7 +41,7 @@ namespace MedicinesSales.Data.Database
 
             else { command.Dispose(); return true; }
         }
-        public static bool CheckMatchAccount(string login, string password)
+        public bool CheckMatchAccount(string login, string password)
         {
             string query = "SELECT login, password FROM account WHERE login= @login";
             command = new MySqlCommand(query,connection);
@@ -60,7 +62,7 @@ namespace MedicinesSales.Data.Database
         }
         #endregion
 
-        public static void DeleteAccount(string login)
+        public void DeleteAccount(string login)
         {
             string query = "DELETE FROM `account` WHERE login=@login";
             command = new MySqlCommand(query,connection);
@@ -68,7 +70,7 @@ namespace MedicinesSales.Data.Database
             command.ExecuteNonQuery();
             command.Dispose();
         }
-        public static void AddAccount(string login, string password)
+        public void AddAccount(string login, string password)
         {
             string query = "INSERT INTO account(login, password) VALUES (@login, @password)";
             command = new MySqlCommand(query,connection);
@@ -77,7 +79,7 @@ namespace MedicinesSales.Data.Database
             command.ExecuteNonQuery();
             command.Dispose();
         }
-        public static ProfileEmployee GetProfileEmployee(int id_employee)
+        public EmployeeProfileModel GetProfileEmployee(int id_employee)
         {
             string query = "SELECT employee.id, employee.first_name, employee.last_name, employee.middle_name, employee.age, employee.employee_photo, account.email, employee_post.post, employee_status.status " +
                            "FROM employee " +
@@ -89,22 +91,72 @@ namespace MedicinesSales.Data.Database
             command.Parameters.AddWithValue("@id_employee", id_employee);
 
             MySqlDataReader dr = command.ExecuteReader();
-            ProfileEmployee profileEmployee = new ProfileEmployee();
+            EmployeeProfileModel profileEmployee = new EmployeeProfileModel();
 
             dr.Read();
-            profileEmployee.id = (int) dr[0];
-            profileEmployee.firstName =  (string)dr[1];
-            profileEmployee.lastName =   (string)dr[2].ToString();
-            profileEmployee.middleName = (string)dr[3].ToString();
-            profileEmployee.age =  (int)dr[4];
-            profileEmployee.photo = (Byte[]) dr[5];
-            profileEmployee.email = (string)dr[6];
-            profileEmployee.post = (string)dr[7];
-            profileEmployee.status = (string)dr[8];
+
+            profileEmployee.firstName =  dr[1].ToString();
+            profileEmployee.lastName =   dr[2].ToString();
+            profileEmployee.middleName = dr[3].ToString();
+            profileEmployee.age =  dr[4].ToString();
+            profileEmployee.photo = ToolManager.byteArrayToImage((Byte[]) dr[5]);
+            profileEmployee.email =  dr[6].ToString();
+            profileEmployee.post =   dr[7].ToString();
+            profileEmployee.status = dr[8].ToString();
 
             command.Dispose();
             return profileEmployee;
 
+        }
+        public HashSet <SearchItemModel> GetMedicines()
+        {
+            string query = "SELECT id, name, description FROM medicine";
+            command = new MySqlCommand(query, connection);
+
+            MySqlDataReader reader = command.ExecuteReader();
+            HashSet <SearchItemModel> items = new HashSet<SearchItemModel>();
+            SearchItemModel item;
+
+            while (reader.Read())
+            {
+                item = new SearchItemModel();
+                item.id = (int) reader.GetValue(0);
+                item.title = reader.GetValue(1).ToString();
+                item.description = reader.GetValue(2).ToString();
+
+                items.Add(item);
+            }
+            command.Dispose();
+            return items;
+        }
+        public HashSet<SearchItemModel> FindMedicines(string nameMedicine)
+        {
+            string query = "SELECT id, name, description FROM medicine WHERE name RLIKE @regex";
+            command = new MySqlCommand(query, connection);
+            command.Parameters.AddWithValue("@regex", nameMedicine);
+
+            MySqlDataReader reader = command.ExecuteReader();
+            HashSet<SearchItemModel> items = new HashSet<SearchItemModel>();
+            SearchItemModel item;
+
+            while (reader.Read())
+            {
+                item = new SearchItemModel();
+                item.id = (int)reader.GetValue(0);
+                item.title = reader.GetValue(1).ToString();
+                item.description = reader.GetValue(2).ToString();
+
+                items.Add(item);
+            }
+            command.Dispose();
+            return items;
+        }
+        public void DeleteMedicine (SearchItemModel medicine){
+            string query = "DELETE FROM `medicine` WHERE id=@id_item";
+            command = new MySqlCommand(query, connection);
+            command.Parameters.AddWithValue("@id_item", medicine.id);
+            command.ExecuteNonQuery();
+            command.Dispose();
         }
     }
 }

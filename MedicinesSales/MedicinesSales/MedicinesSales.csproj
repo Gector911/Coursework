@@ -117,21 +117,22 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Data\Database\ProfileEmployee.cs" />
     <Compile Include="Data\Model\EmployeeProfileModel.cs" />
     <Compile Include="Data\Model\LoginInModel.cs" />
+    <Compile Include="Data\Model\SearchItemModel.cs" />
+    <Compile Include="Data\Model\SearchMedicinesModel.cs" />
     <Compile Include="Data\Other\ToolManager.cs" />
     <Compile Include="Data\ViewModel\Command.cs" />
     <Compile Include="Data\ViewModel\EmployeeProfileViewModel.cs" />
     <Compile Include="Data\ViewModel\LoginInViewModel.cs" />
     <Compile Include="Data\ViewModel\ProgramViewModel.cs" />
+    <Compile Include="Data\ViewModel\SearchMedicinesViewModel.cs" />
     <Compile Include="Data\View\EmployeeProfileView.xaml.cs">
       <DependentUpon>EmployeeProfileView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Data\View\LogInView.xaml.cs">
       <DependentUpon>LogInView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Data\Account\Account.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -149,10 +150,17 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Data\View\SearchMedicinesView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Data\View\ProgramView.xaml.cs">
       <DependentUpon>ProgramView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Data\View\SearchMedicinesView.xaml.cs">
+      <DependentUpon>SearchMedicinesView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>

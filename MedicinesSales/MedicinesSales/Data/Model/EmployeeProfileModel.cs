@@ -109,24 +109,5 @@ namespace MedicinesSales.Data.Model
         }
         #endregion
 
-        #region Methods
-        public void GetDataFromDatabase()
-        {
-            ProfileEmployee employee = DatabaseModel.GetProfileEmployee(1);
-
-            firstName = employee.firstName;
-            lastName = employee.lastName;
-            middleName = employee.middleName;
-            age = employee.age.ToString();
-
-           // if (employee.photo != null)
-                 photo = ToolManager.byteArrayToImage(employee.photo);
-           // else photo = ToolManager.GetBitmapImage(@"Data\Images\Empty profile photo.jpg");
-            email = employee.email;
-            post = employee.post;
-            status = employee.status;
-
-        }
-        #endregion
     }
 }

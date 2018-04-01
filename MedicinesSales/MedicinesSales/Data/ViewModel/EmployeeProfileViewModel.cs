@@ -9,10 +9,11 @@ using MedicinesSales.Data.Model;
 using System.IO;
 using System.Drawing;
 using System.Windows.Media.Imaging;
+using MedicinesSales.Data.Database;
 
 namespace MedicinesSales.Data.ViewModel
 {
-     class EmployeeProfileViewModel
+     class EmployeeProfileViewModel 
     {
 
         #region Properties
@@ -22,8 +23,8 @@ namespace MedicinesSales.Data.ViewModel
         #region Constructor
         public EmployeeProfileViewModel ()
         {
-           employeeProfile = new EmployeeProfileModel();
-           employeeProfile.GetDataFromDatabase();
+            DatabaseModel database = new DatabaseModel();
+            employeeProfile = database.GetProfileEmployee(1);
         }
         #endregion
 
