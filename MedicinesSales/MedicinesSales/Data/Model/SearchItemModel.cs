@@ -21,29 +21,13 @@ namespace MedicinesSales.Data.Model
         public string title{
             get { return _title;  }
             set { _title = value;
-               // OnPropertyChanged("title");
             }
         }
         public string description{
         
             get { return _description; }
             set { _description = value;
-               // OnPropertyChanged("description");
             }
         }
-
-
-
-        /*
-                #region INotyfyPropertyChanged
-                public event PropertyChangedEventHandler PropertyChanged;
-                protected virtual void OnPropertyChanged(string propertyName)
-                {
-                    if (PropertyChanged != null)
-                    {
-                        PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-                    }
-                }
-                #endregion*/
     }
 }

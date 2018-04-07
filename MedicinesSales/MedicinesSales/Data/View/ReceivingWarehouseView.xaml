@@ -1,0 +1,27 @@
+﻿<Page x:Class="MedicinesSales.Data.View.ReceivingWarehouseView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:MedicinesSales.Data.View"
+      xmlns:vm ="clr-namespace:MedicinesSales.Data.ViewModel" 
+      mc:Ignorable="d" 
+      d:DesignHeight="600" d:DesignWidth="800"
+      Title="ReceivingWarehouseView">
+
+    <Page.DataContext>
+        <vm:ReceivingWarehouseViewModel/>
+    </Page.DataContext>
+
+    <Grid>
+        <DataGrid HorizontalAlignment="Left" Name="mydatagrid" Margin="28,24,0,0" VerticalAlignment="Top" Height="494" Width="748" ItemsSource="{Binding Path=DataGridMedicines,Mode=TwoWay,NotifyOnSourceUpdated=True,NotifyOnTargetUpdated=True}"  SelectedItem="{Binding SelectedItem}" AutoGenerateColumns="False" IsReadOnly="True"  >
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="id" Binding="{Binding Path=id}" Width="10"/>
+                <DataGridTextColumn Header="Name" Binding="{Binding Path=name}" Width="250"/>
+                <DataGridTextColumn Header="Quantity" Binding="{Binding Path=quantity}" Width="*"/>
+                <DataGridTextColumn Header="Cost" Binding="{Binding Path=cost}" Width="*"/>
+                <DataGridTextColumn Header="Date" Binding="{Binding Path=date}" Width="*"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Page>

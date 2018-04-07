@@ -25,7 +25,6 @@ namespace MedicinesSales.Data.Database
             connection.Open();
         }
 
-        #region verification account
         public bool CheckLogin(string login)
         {
             string query = "SELECT COUNT(*) FROM account WHERE login = @login";
@@ -60,7 +59,7 @@ namespace MedicinesSales.Data.Database
             command.Dispose();
             return false;
         }
-        #endregion
+       
 
         public void DeleteAccount(string login)
         {
@@ -129,7 +128,7 @@ namespace MedicinesSales.Data.Database
             command.Dispose();
             return items;
         }
-        public HashSet<SearchItemModel> FindMedicines(string nameMedicine)
+        public HashSet <SearchItemModel> FindMedicines(string nameMedicine)
         {
             string query = "SELECT id, name, description FROM medicine WHERE name RLIKE @regex";
             command = new MySqlCommand(query, connection);
@@ -157,6 +156,111 @@ namespace MedicinesSales.Data.Database
             command.Parameters.AddWithValue("@id_item", medicine.id);
             command.ExecuteNonQuery();
             command.Dispose();
+        }
+        public HashSet <PharmacySaleItemModel> GetPharmacySales(){
+
+            string query = "SELECT pharmacy_sale.id, medicine.name, employee.first_name, employee.last_name," +
+                                   "employee.middle_name, pharmacy_sale.quantity, pharmacy_sale.profit, pharmacy_sale.date " +
+                           "FROM pharmacy_sale " +
+                           "LEFT JOIN medicine ON medicine.id = pharmacy_sale.id_medicine " +
+                           "LEFT JOIN employee ON employee.id = pharmacy_sale.id_employee ";
+            command = new MySqlCommand(query, connection);
+
+            MySqlDataReader reader = command.ExecuteReader();
+            HashSet<PharmacySaleItemModel> items = new HashSet<PharmacySaleItemModel>();
+            PharmacySaleItemModel item;
+
+            while (reader.Read())
+            {
+                item = new PharmacySaleItemModel ();
+                item.id = reader.GetValue(0).ToString();
+                item.name = reader.GetValue(1).ToString();
+                item.employee = reader.GetValue(2).ToString() + reader.GetValue(3).ToString() + reader.GetValue(4).ToString();
+                item.quantity = reader.GetValue(5).ToString();
+                item.profit = reader.GetValue(6).ToString();
+                item.date = reader.GetValue(7).ToString();
+
+                items.Add(item);
+            }
+            command.Dispose();
+            return items;
+        }
+        public HashSet <ReceivingPharmacyItemModel> GetPharmacyReceiving()
+        {
+
+            string query = "SELECT receiving_pharmacy.id, medicine.name, receiving_pharmacy.quantity, receiving_pharmacy.cost, receiving_pharmacy.date " +
+                           "FROM receiving_pharmacy " +
+                           "LEFT JOIN medicine ON medicine.id = receiving_pharmacy.id_medicine ";
+            command = new MySqlCommand(query, connection);
+
+            MySqlDataReader reader = command.ExecuteReader();
+            HashSet<ReceivingPharmacyItemModel> items = new HashSet<ReceivingPharmacyItemModel>();
+            ReceivingPharmacyItemModel item;
+
+            while (reader.Read())
+            {
+                item = new ReceivingPharmacyItemModel();
+                item.id = reader.GetValue(0).ToString();
+                item.name = reader.GetValue(1).ToString();
+                item.quantity = reader.GetValue(2).ToString();
+                item.cost = reader.GetValue(3).ToString();
+                item.date = reader.GetValue(4).ToString();
+
+                items.Add(item);
+            }
+            command.Dispose();
+            return items;
+        }
+        public HashSet <DeliveryWarehouseItemModel> GetWarehouseDeliveries()
+        {
+
+            string query = "SELECT delivery_warehouse.id, medicine.name, delivery_warehouse.quantity, delivery_warehouse.cost, delivery_warehouse.date " +
+                           "FROM delivery_warehouse " +
+                           "LEFT JOIN medicine ON medicine.id = delivery_warehouse.id_medicine ";
+            command = new MySqlCommand(query, connection);
+
+            MySqlDataReader reader = command.ExecuteReader();
+            HashSet <DeliveryWarehouseItemModel> items = new HashSet <DeliveryWarehouseItemModel>();
+            DeliveryWarehouseItemModel item;
+
+            while (reader.Read())
+            {
+                item = new DeliveryWarehouseItemModel();
+                item.id = reader.GetValue(0).ToString();
+                item.name = reader.GetValue(1).ToString();
+                item.quantity = reader.GetValue(2).ToString();
+                item.cost = reader.GetValue(3).ToString();
+                item.date = reader.GetValue(4).ToString();
+
+                items.Add(item);
+            }
+            command.Dispose();
+            return items;
+        }
+        public HashSet <ReceivingWarehouseItemModel> GetWarehouseReceiving()
+        {
+            string query = "SELECT receiving_warehouse.id, medicine.name, receiving_warehouse.quantity, receiving_warehouse.cost, receiving_warehouse.date " +
+                                      "FROM receiving_warehouse " +
+                                      "LEFT JOIN medicine ON medicine.id = receiving_warehouse.id_medicine ";
+            command = new MySqlCommand(query, connection);
+
+            MySqlDataReader reader = command.ExecuteReader();
+            HashSet<ReceivingWarehouseItemModel> items = new HashSet<ReceivingWarehouseItemModel>();
+            ReceivingWarehouseItemModel item;
+
+            while (reader.Read())
+            {
+                item = new ReceivingWarehouseItemModel();
+                item.id = reader.GetValue(0).ToString();
+                item.name = reader.GetValue(1).ToString();
+                item.quantity = reader.GetValue(2).ToString();
+                item.cost = reader.GetValue(3).ToString();
+                item.date = reader.GetValue(4).ToString();
+
+                items.Add(item);
+            }
+            command.Dispose();
+            return items;
         }
     }
 }

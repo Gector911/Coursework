@@ -19,7 +19,12 @@ namespace MedicinesSales.Data.ViewModel
         #region Fields
         private DatabaseModel database;
 
+        private Page PharmacySale;
+        private Page PharmacyDelivery;
+        private Page WarehouseDelivery;
+        private Page WarehouseReceiving;
         private Page ProfileAccount;
+        private Page DataBaseMedicines;
         private Page _currentPage;
         #endregion
 
@@ -40,8 +45,18 @@ namespace MedicinesSales.Data.ViewModel
 
             ExitApplication = new Command(arg=>ExitFromApp());
             OpenProfileAccount = new Command(arg => OpenProfileEmployee());
+            OpenDatabaseMedicines = new Command(arg => OpenDatabaseMedicine());
+            OpenPharmacySales = new Command(arg => OpenPharmacyMedicineSales());
+            OpenPharmacyReceived = new Command(arg => OpenPharmacyMedicineDeliveries());
+            OpenWarehouseDeliveries = new Command(arg => OpenPharmacyMedicineDeliveries());
+            OpenWarehouseReceived = new Command(arg => OpenWarehouseMedicineReceiving());
 
             ProfileAccount = new EmployeeProfileView ();
+            DataBaseMedicines = new SearchMedicinesView ();
+            PharmacySale = new PharmacySaleView ();
+            PharmacyDelivery = new ReceivingPharmacyView();
+            WarehouseDelivery = new DeliveryWarehouseView ();
+            WarehouseReceiving = new ReceivingWarehouseView ();
         }
 
 
@@ -59,6 +74,11 @@ namespace MedicinesSales.Data.ViewModel
 
         #region Commands
         public ICommand OpenProfileAccount { get; set; }
+        public ICommand OpenDatabaseMedicines { get; set; }
+        public ICommand OpenPharmacySales { get; set; }
+        public ICommand OpenPharmacyReceived { get; set; }
+        public ICommand OpenWarehouseDeliveries { get; set; }
+        public ICommand OpenWarehouseReceived { get; set; }
         public ICommand ExitApplication { get; set; }
         #endregion
 
@@ -70,6 +90,24 @@ namespace MedicinesSales.Data.ViewModel
         private void OpenProfileEmployee()
         {
             CurrentPage = ProfileAccount;
+        }
+        private void OpenDatabaseMedicine(){
+            CurrentPage = DataBaseMedicines;
+        }
+        private void OpenPharmacyMedicineSales()
+        {
+            CurrentPage = PharmacySale;
+        }
+        private void OpenPharmacyMedicineDeliveries()
+        {
+            CurrentPage = PharmacyDelivery;
+        }
+        private void OpenWarehouseMedicineDeliveries()
+        {
+            CurrentPage = WarehouseDelivery;
+        }
+        private void OpenWarehouseMedicineReceiving() {
+            CurrentPage = WarehouseReceiving;
         }
         #endregion
     }

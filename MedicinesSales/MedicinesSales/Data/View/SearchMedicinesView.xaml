@@ -1,4 +1,4 @@
-﻿<Window x:Class="MedicinesSales.Data.View.SearchMedicinesView"
+﻿<Page x:Class="MedicinesSales.Data.View.SearchMedicinesView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -10,9 +10,9 @@
         mc:Ignorable="d"
         Title="SearchMedicinesView" Height="600" Width="800">
 
-    <Window.DataContext>
+    <Page.DataContext>
         <vm:SearchMedicinesViewModel/>
-    </Window.DataContext>
+    </Page.DataContext>
 
 
     <Grid>
@@ -21,14 +21,13 @@
             <Button Content="Search" HorizontalAlignment="Left" Height="23" Margin="664,18,0,0" VerticalAlignment="Top" Width="63" Command="{Binding FindMedicines}"/>
         </Grid>
 
-        <DataGrid HorizontalAlignment="Left" Name="mydatagrid" Margin="28,84,0,0" VerticalAlignment="Top" Height="410" Width="737" ItemsSource="{Binding Path=DataGridMedicines,Mode=TwoWay,NotifyOnSourceUpdated=True,NotifyOnTargetUpdated=True}"  SelectedItem="{Binding SelectedItem}" AutoGenerateColumns="False" IsReadOnly="True"  >
+        <DataGrid HorizontalAlignment="Left" Name="mydatagrid" Margin="28,84,0,0" VerticalAlignment="Top" Height="392" Width="737" ItemsSource="{Binding Path=DataGridMedicines,Mode=TwoWay,NotifyOnSourceUpdated=True,NotifyOnTargetUpdated=True}"  SelectedItem="{Binding SelectedItem}" AutoGenerateColumns="False" IsReadOnly="True"  >
             <DataGrid.Columns>
                 <DataGridTextColumn Header="id" Binding="{Binding Path=id}" Width="10"/>
-                <DataGridTextColumn Header="Title" Binding="{Binding Path=title}" Width="250"/>
-                <DataGridTextColumn Header="Description" Binding="{Binding Path=description}" Width="*"/>
+                <DataGridTextColumn Header="Title" Binding="{Binding Path=title}" Width="*"/>
             </DataGrid.Columns>
         </DataGrid>
-        <Button Content="Add" HorizontalAlignment="Left" Height="26" Margin="614,518,0,0" VerticalAlignment="Top" Width="116" Command="{Binding NewMedicine}"/>
-        <Button Content="Delete" HorizontalAlignment="Left" Height="26" Margin="479,518,0,0" VerticalAlignment="Top" Width="116" Command="{Binding DeleteMedicine}"/>
+        <Button Content="Add" HorizontalAlignment="Left" Height="26" Margin="614,485,0,0" VerticalAlignment="Top" Width="116" Command="{Binding NewMedicine}"/>
+        <Button Content="Delete" HorizontalAlignment="Left" Height="26" Margin="479,485,0,0" VerticalAlignment="Top" Width="116" Command="{Binding DeleteMedicine}"/>
     </Grid>
-</Window>
+</Page>

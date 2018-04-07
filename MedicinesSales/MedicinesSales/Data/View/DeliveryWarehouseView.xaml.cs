@@ -10,19 +10,19 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace MedicinesSales.Data.View
 {
     /// <summary>
-    /// Логика взаимодействия для SearchMedicinesView.xaml
+    /// Логика взаимодействия для DeliveryWarehouseView.xaml
     /// </summary>
-    public partial class SearchMedicinesView : Page
+    public partial class DeliveryWarehouseView : Page
     {
-        public SearchMedicinesView()
+        public DeliveryWarehouseView()
         {
             InitializeComponent();
         }
-
     }
 }

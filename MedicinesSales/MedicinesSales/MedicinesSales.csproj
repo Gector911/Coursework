@@ -117,16 +117,30 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Data\Model\ReceivingPharmacyItemModel.cs" />
+    <Compile Include="Data\Model\DeliveryWarehouseItemModel.cs" />
     <Compile Include="Data\Model\EmployeeProfileModel.cs" />
     <Compile Include="Data\Model\LoginInModel.cs" />
+    <Compile Include="Data\Model\PharmacySaleItemModel.cs" />
+    <Compile Include="Data\Model\ReceivingWarehouseItemModel.cs" />
     <Compile Include="Data\Model\SearchItemModel.cs" />
     <Compile Include="Data\Model\SearchMedicinesModel.cs" />
     <Compile Include="Data\Other\ToolManager.cs" />
     <Compile Include="Data\ViewModel\Command.cs" />
+    <Compile Include="Data\ViewModel\ReceivingPharmacyViewModel.cs" />
+    <Compile Include="Data\ViewModel\DeliveryWarehouseViewModel.cs" />
     <Compile Include="Data\ViewModel\EmployeeProfileViewModel.cs" />
     <Compile Include="Data\ViewModel\LoginInViewModel.cs" />
+    <Compile Include="Data\ViewModel\PharmacySaleViewModel.cs" />
     <Compile Include="Data\ViewModel\ProgramViewModel.cs" />
+    <Compile Include="Data\ViewModel\ReceivingWarehouseViewModel.cs" />
     <Compile Include="Data\ViewModel\SearchMedicinesViewModel.cs" />
+    <Compile Include="Data\View\ReceivingPharmacyView.xaml.cs">
+      <DependentUpon>ReceivingPharmacyView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Data\View\DeliveryWarehouseView.xaml.cs">
+      <DependentUpon>DeliveryWarehouseView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Data\View\EmployeeProfileView.xaml.cs">
       <DependentUpon>EmployeeProfileView.xaml</DependentUpon>
     </Compile>
@@ -138,6 +152,14 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Data\Database\DatabaseModel.cs" />
+    <Page Include="Data\View\ReceivingPharmacyView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Data\View\DeliveryWarehouseView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Data\View\EmployeeProfileView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -146,7 +168,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Data\View\PharmacySaleView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Data\View\ProgramView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Data\View\ReceivingWarehouseView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -156,8 +186,14 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data\View\PharmacySaleView.xaml.cs">
+      <DependentUpon>PharmacySaleView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Data\View\ProgramView.xaml.cs">
       <DependentUpon>ProgramView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Data\View\ReceivingWarehouseView.xaml.cs">
+      <DependentUpon>ReceivingWarehouseView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Data\View\SearchMedicinesView.xaml.cs">
       <DependentUpon>SearchMedicinesView.xaml</DependentUpon>

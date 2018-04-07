@@ -24,6 +24,12 @@
             <Menu Background="YellowGreen">
                 <MenuItem Header="Menu" VerticalContentAlignment="Stretch" Height="25" Width="82">
                     <MenuItem Header="Account" Command="{Binding OpenProfileAccount}" ></MenuItem>
+                    <MenuItem Header="Database medicines" Command="{Binding OpenDatabaseMedicines}" ></MenuItem>
+                    <MenuItem Header="Sold pharmacy medicines" Command="{Binding OpenPharmacySales}" ></MenuItem>
+                    <MenuItem Header="Received pharmacy medicines " Command="{Binding OpenPharmacyReceived}" ></MenuItem>
+                    <Separator />
+                    <MenuItem Header="Received warehouse medicines " Command="{Binding OpenWarehouseReceived}" ></MenuItem>
+                    <MenuItem Header="Deliveries warehouse medicines" Command="{Binding OpenWarehouseDeliveries}" ></MenuItem>
                     <Separator />
                     <MenuItem Header="Exit"  Command="{Binding ExitApplication}" ></MenuItem>
                 </MenuItem>
@@ -32,8 +38,7 @@
 
 
         <Grid Grid.Row="1">
-            <Frame x:Name="MainFrame" Content="{Binding Path=CurrentPage, Mode=TwoWay}"/>
-
+            <Frame x:Name="MainFrame" Content="{Binding Path=CurrentPage, Mode=TwoWay}" NavigationUIVisibility="Hidden"/>
         </Grid>
 
     </Grid>

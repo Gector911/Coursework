@@ -32,7 +32,7 @@ namespace MedicinesSales.Data.ViewModel
                 OnPropertyChanged("SelectedItem");
             }
         }
-        public string _searchLine { get; set; }
+        public string searchLine { get; set; }
 
        public SearchMedicinesViewModel()
         {
@@ -69,7 +69,7 @@ namespace MedicinesSales.Data.ViewModel
         {
             DataGridMedicines.Clear();
             DatabaseModel database = new DatabaseModel();
-            HashSet<SearchItemModel> itemsFromDB = database.FindMedicines(_searchLine);
+            HashSet<SearchItemModel> itemsFromDB = database.FindMedicines(searchLine);
             foreach (SearchItemModel item in itemsFromDB)
                 DataGridMedicines.Add(item);
         }
